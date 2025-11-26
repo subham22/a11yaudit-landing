@@ -428,6 +428,15 @@
             }
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYVVQQFL5V"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CYVVQQFL5V');
+        </script>
 </head>
 <body>
     <!-- Header -->
@@ -653,6 +662,14 @@
             // Increment counter (in production, this should come from backend)
             const currentCount = parseInt(document.getElementById('waitlistCount').textContent);
             document.getElementById('waitlistCount').textContent = currentCount + 1;
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'waitlist_signup', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Landing Page',
+                    'value': 1
+                });
+            }
 
             // Optional: Send to Google Sheets or Mailchimp
             // fetch('YOUR_WEBHOOK_URL', {
