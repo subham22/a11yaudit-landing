@@ -630,10 +630,24 @@
             const email = document.getElementById('emailInput').value;
             
             // TODO: Send to your backend/email service
-            console.log('Email submitted:', email);
-            
-            // Show success message
-            document.getElementById('successMessage').classList.add('show');
+            fetch('https://script.google.com/macros/s/AKfycbzF5FHJHTmAH3pcQO5pqk2GJct6uwRO60xdnOC4fTBaD6qnLWzrOVMhVaMnQM_cTKx1/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `email=${encodeURIComponent(email)}`
+            }).then(() => {
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                document.getElementById('waitlistForm').style.display = 'none';
+                
+                // Increment counter
+                const currentCount = parseInt(document.getElementById('waitlistCount').textContent);
+                document.getElementById('waitlistCount').textContent = currentCount + 1;
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again!');
+            });
+
             document.getElementById('waitlistForm').style.display = 'none';
             
             // Increment counter (in production, this should come from backend)
