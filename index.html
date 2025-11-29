@@ -710,9 +710,7 @@
                 document.getElementById('successMessage').classList.add('show');
                 document.getElementById('waitlistForm').style.display = 'none';
                 
-                // Increment counter
-                const currentCount = parseInt(document.getElementById('waitlistCount').textContent);
-                document.getElementById('waitlistCount').textContent = currentCount + 1;
+               
             }).catch(error => {
                 console.error('Error:', error);
                 alert('Something went wrong. Please try again!');
@@ -720,9 +718,6 @@
 
             document.getElementById('waitlistForm').style.display = 'none';
             
-            // Increment counter (in production, this should come from backend)
-            const currentCount = parseInt(document.getElementById('waitlistCount').textContent);
-            document.getElementById('waitlistCount').textContent = currentCount + 1;
 
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'waitlist_signup', {
